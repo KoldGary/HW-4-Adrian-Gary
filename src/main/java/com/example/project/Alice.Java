@@ -2,12 +2,12 @@ package socialnetwork;
 
 import java.util.*;
 
-public class User {
+public class AliceUser {
     private String username;
     private List<String> timeline = new ArrayList<>();
     private Set<User> following = new HashSet<>();
 
-    public User(String username) {
+    public AliceUser(String username) {
         this.username = username;
     }
 

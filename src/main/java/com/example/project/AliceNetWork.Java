@@ -1,33 +1,18 @@
-package socialnetwork;
+public class SocialNetwork {
+    private Map<String, User> users = new HashMap<>();
 
-import java.util.*;
-
-public class User {
-    private String username;
-    private List<String> timeline = new ArrayList<>();
-    private Set<User> following = new HashSet<>();
-
-    public User(String username) {
-        this.username = username;
+    public User registerUser(String username) {
+        User user = new User(username, this);
+        users.put(username, user);
+        return user;
     }
 
-    public void postMessage(String message) {
-        timeline.add(message);
+    public User getUser(String username) {
+        return users.get(username);
     }
 
-    public List<String> getTimeline() {
-        return timeline;
-    }
-
-    public void follow(User other) {
-        following.add(other);
-    }
-
-    public List<String> getAggregatedTimeline() {
-        List<String> aggregated = new ArrayList<>();
-        for (User user : following) {
-            aggregated.addAll(user.getTimeline());
-        }
-        return aggregated;
+    public List<String> getTimelineOf(String username) {
+        User user = users.get(username);
+        return user != null ? user.getTimeline() : new ArrayList<>();
     }
 }
